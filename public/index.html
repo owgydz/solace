@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Solace CPU Emulator</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* --- Top bar layout --- */
+    #top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #1e1e1e; /* VS Code style dark bar */
+      color: #ffffff;
+      padding: 5px 10px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    /* Left side buttons */
+    #top-bar .left-buttons {
+      display: flex;
+      gap: 5px;
+    }
+
+    #top-bar .left-buttons button {
+      background-color: #252526;
+      color: #fff;
+      border: 1px solid #3c3c3c;
+      padding: 4px 10px;
+      cursor: pointer;
+      border-radius: 2px;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
+
+    #top-bar .left-buttons button:hover {
+      background-color: #0e639c; /* VS Code hover blue */
+    }
+
+    /* Right side: version + GitHub logo */
+    #top-bar .right-items {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #top-bar .right-items span {
+      font-weight: bold;
+      color: #d4d4d4;
+    }
+
+    /* GitHub logo */
+    #top-bar img.github-logo {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    #top-bar img.github-logo:hover {
+      transform: scale(1.2);
+      filter: brightness(1.3);
+    }
+  </style>
+</head>
+<body>
+  <div id="top-bar">
+    <div class="left-buttons">
+      <button id="run">Run</button>
+      <button id="step">Step</button>
+      <button id="reset">Reset</button>
+      <button id="save">Save</button>
+      <button id="load">Load</button>
+    </div>
+
+    <div class="right-items">
+      <span>Solace v1.0.0-10221</span>
+      <a href="https://github.com/owgydz/solace" target="_blank">
+        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" class="github-logo">
+      </a>
+    </div>
+  </div>
+
+  <div id="main-container">
+    <div id="left-panel">
+      <h2>CPU Designer</h2>
+      <div id="registers-designer"></div>
+      <label>Memory Size: <input id="memory" type="number" value="64"></label>
+
+      <h2>Instruction Builder</h2>
+      <div id="instruction-builder"></div>
+    </div>
+
+    <div id="center-panel">
+      <h2>Assembly Editor</h2>
+      <textarea id="assembly" rows="20" cols="60">
+MOV A,1
+MOV B,2
+ADD A,B
+      </textarea>
+    </div> 
+
+    <div id="right-panel">
+      <h2>Registers</h2>
+      <div id="register-view"></div>
+
+      <h2>Memory</h2>
+      <div id="memory-view"></div>
+
+      <h2>Instruction Set</h2>
+      <div id="instruction-set-view"></div>
+
+      <h2>CPU Warnings</h2>
+      <div id="cpu-warnings" style="height:100px; overflow-y:auto; background:#1e1e1e; border:1px solid #333; padding:5px;"></div>
+
+      <h2>Peripherals</h2>
+      <canvas id="screen" width="320" height="320"></canvas>
+      <p>Keyboard input mapped to memory[0]</p>
+    </div>
+  </div>
+
+  <script type="module" src="../index.js"></script>
+</body>
+</html>
